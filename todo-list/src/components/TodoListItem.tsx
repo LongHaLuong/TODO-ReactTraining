@@ -7,17 +7,20 @@ interface Props {
 
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
   return (
-    <li>
-      <label style={{ textDecoration: todo.complete ? 'line-through' : undefined }}>
-        <input
-          type="checkbox"
-          checked={todo.complete}
-          onClick={() => {
-            toggleTodo(todo);
-          }}
-        />{' '}
-        {todo.text}
-      </label>
-    </li>
+    <>
+      <li>
+        <label style={{ textDecoration: todo.complete ? 'line-through' : 'none' }}>
+          <input
+            type="checkbox"
+            checked={todo.complete}
+            onClick={() => {
+              toggleTodo(todo);
+              console.log(todo);
+            }}
+          />{' '}
+          {todo.text}
+        </label>
+      </li>
+    </>
   );
 };

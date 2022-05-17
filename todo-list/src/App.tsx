@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TodoList } from './components/TodoList';
-import { AddToForm } from './components/AddToForm';
+import { AddTodoForm } from './components/AddTodo';
 
 const initTodos: Todo[] = [
   {
@@ -17,15 +17,17 @@ export function App() {
   const [todos, setTodos] = useState(initTodos);
 
   const toggleTodo = (selectedTodo: Todo) => {
-    const newTodo = todos.map((todo) => {
-      if (todo === selectedTodo)
+    const newTodos = todos.map((todo) => {
+      if (todo === selectedTodo) {
         return {
           ...todo,
           complete: !todo.complete,
         };
+      }
       return todo;
     });
-    setTodos(newTodo);
+    setTodos(newTodos);
+    console.log(`update state successfully`);
   };
 
   const addTodo: AddTodo = (text: string) => {
@@ -35,8 +37,10 @@ export function App() {
 
   return (
     <>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <AddToForm addTodo={addTodo} />
+      <ul>
+        <TodoList todos={todos} toggleTodo={toggleTodo} />
+        <AddTodoForm addTodo={addTodo} />
+      </ul>
     </>
   );
 }

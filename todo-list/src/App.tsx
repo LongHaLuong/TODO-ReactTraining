@@ -27,7 +27,12 @@ export function App() {
       return todo;
     });
     setTodos(newTodos);
-    console.log(`update state successfully`);
+  };
+
+  const deleteTodo = (selectedTodo: Todo) => {
+    const newTodos = todos.filter((todo) => todo !== selectedTodo);
+    console.log(newTodos);
+    setTodos(newTodos);
   };
 
   const addTodo: AddTodo = (text: string) => {
@@ -37,10 +42,14 @@ export function App() {
 
   return (
     <>
-      <ul>
-        <TodoList todos={todos} toggleTodo={toggleTodo} />
-        <AddTodoForm addTodo={addTodo} />
-      </ul>
+      <div className="p-5 text-center bg-light ">
+        <h1 className="mb-3 text-warning">TODO-List</h1>
+        <h4 className="mb-3">llha@tma.com.vn</h4>
+        <ul>
+          <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+          <AddTodoForm addTodo={addTodo} />
+        </ul>
+      </div>
     </>
   );
 }
